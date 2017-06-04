@@ -489,10 +489,10 @@ const Carousel = React.createClass({
         }, function() {
           self.animateSlide(null, null, self.getTargetLeft(null, index), function() {
             self.animateSlide(null, 0.01);
-            self.props.afterSlide(endSlide);
             self.resetAutoplay();
             self.setExternalData();
           });
+          self.props.afterSlide(endSlide);
         });
       }
     }
