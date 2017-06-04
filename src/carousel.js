@@ -476,10 +476,10 @@ const Carousel = React.createClass({
         }, function() {
           self.animateSlide(null, null, self.getTargetLeft(null, index), function() {
             self.animateSlide(null, 0.01);
-            self.props.afterSlide(0);
             self.resetAutoplay();
             self.setExternalData();
           });
+          self.props.afterSlide(0);
         });
       } else {
         var endSlide = React.Children.count(this.props.children) - this.state.slidesToScroll;
@@ -499,13 +499,14 @@ const Carousel = React.createClass({
 
     this.props.beforeSlide(this.state.currentSlide, index);
 
+    var currentSlide = this.state.currentSlide
     this.setState({
       currentSlide: index
     }, function() {
       self.animateSlide();
       self.resetAutoplay();
       self.setExternalData();
-      if (this.state.currentSlide !== index) {
+      if (currentSlide !== index) {
         this.props.afterSlide(index);
       }
     });
